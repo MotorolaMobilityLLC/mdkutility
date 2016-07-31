@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+	Copyright (c) 2016 Motorola Mobility, LLC.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+	1. Redistributions of source code must retain the above copyright notice,
+	this list of conditions and the following disclaimer.
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	this list of conditions and the following disclaimer in the documentation
+	and/or other materials provided with the distribution.
+	3. Neither the name of the copyright holder nor the names of its
+	contributors may be used to endorse or promote products derived from this
+	software without specific prior written permission.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+	PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.motorola.samples.mdkutility">
+
+    <!--
+        As not all Android powered smartphones support the Moto Mods APIs, include
+        a uses-feature statement for com.motorola.hardware.mods element.
+
+        When you declare android:required="true", you are specifying that the application
+        cannot function, or is not designed to function, when the specified feature is not
+        present on the device.
+
+        When you declare android:required="false", it means that the application prefers to
+        use the feature if present on the device, but that it is designed to function without
+        the com.motorola.hardware.mods feature, if necessary.
+
+        The default value for android:required if not declared is "true".
+    -->
+    <uses-feature android:name="com.motorola.hardware.mods"/>
+
+    <!--
+        If your application uses any of functionality of the ModManager, it needs to declare
+        use of the PERMISSION_MOD_ACCESS_INFO permission.
+
+        If your application needs access to the RAW interface, your manifest should declare
+        that your application needs the PERMISSION_USE_RAW_PROTOCOL permission. Your code also
+        needs to check for this permission grant at runtime, and prompt the user to grant this
+        permission to your application if needed.
+    -->
+    <uses-permission android:name="com.motorola.mod.permission.MOD_ACCESS_INFO" />
+    <uses-permission android:name="com.motorola.mod.permission.RAW_PROTOCOL" />
+
+    <supports-screens android:xlargeScreens="true"/>
+
+    <application
+        android:name=".MDKUtilityApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:allowBackup="false"
+        android:theme="@style/AppTheme">
+
+        <!--
+            Set the minimum Moto Mods SDK of the application required.
+        -->
+        <meta-data
+            android:name="com.motorola.mod.version"
+            android:value="@integer/moto_mod_services_version" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/action_about"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="false">
+        </activity>
+
+        <receiver
+            android:name=".raw.BlinkyToggleReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.motomodsdev.intent.action.BLINKY_ON" />
+                <action android:name="com.motomodsdev.intent.action.BLINKY_OFF" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".raw.RawPersonalityService"
+            android:exported="false"></service>
+    </application>
+
+</manifest>

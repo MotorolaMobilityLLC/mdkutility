@@ -1,0 +1,128 @@
+<!--
+	Copyright (c) 2016 Motorola Mobility, LLC.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+	1. Redistributions of source code must retain the above copyright notice,
+	this list of conditions and the following disclaimer.
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	this list of conditions and the following disclaimer in the documentation
+	and/or other materials provided with the distribution.
+	3. Neither the name of the copyright holder nor the names of its
+	contributors may be used to endorse or promote products derived from this
+	software without specific prior written permission.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+	CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+	EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+	PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- description: [App name] -->
+    <string name="app_name">MDK Utility</string>
+    <!-- description: [About menu caption] -->
+    <string name="action_about">About</string>
+    <!-- description: [Learn more menu caption] -->
+    <string name="mod_external_link">Learn more</string>
+    <!-- description: [Developer site menu caption] -->
+    <string name="mod_external_dev_portal">Moto Mods™ Developer Portal</string>
+    <!-- description: [Buy Mod menu caption] -->
+    <string name="mod_external_buy_mdk">Buy Moto Mods™ Development Kit</string>
+    <!-- description: [Privacy Policy menu caption] -->
+    <string name="action_privacy_policy">Privacy Policy</string>
+
+    <!-- description: [Mod Status caption] -->
+    <string name="mod_status_title">Moto Mods Status</string>
+    <!-- description: [Mod name caption] -->
+    <string name="mod_name">Name</string>
+    <!-- description: [Mod Firmware caption] -->
+    <string name="mod_status_firmware">Firmware</string>
+    <!-- description: [Mod VID caption] -->
+    <string name="mod_status_vid" translatable="false">VID</string>
+    <!-- description: [Mod PID caption] -->
+    <string name="mod_status_pid" translatable="false">PID</string>
+    <!-- description: [Mod Package name caption] -->
+    <string name="mod_status_package_name">Package Name</string>
+    <!-- description: [Mod PID/VID caption] -->
+    <string name="mod_pid_vid_format" translatable="false">0x<xliff:g id="id">%1$08x</xliff:g></string>
+
+    <!-- description: [None info] -->
+    <string name="na">n/a</string>
+    <!-- description: [Default info] -->
+    <string name="name_default">Default</string>
+    <!-- description: [Unknown info] -->
+
+    <!-- description: [Commercial Example Mod card name] -->
+    <string name="no_mdk">Commercial</string>
+
+    <!-- description: [Version caption. For example: 01.00] -->
+    <string name="version_main_minor" translatable="false"><xliff:g id="main_version">%1$d</xliff:g>.<xliff:g id="minor_version">%2$d</xliff:g></string>
+    <!-- description: [Mod service is missing] -->
+    <string name="SERVICE_MISSING">MOD_SERVICE_MISSING</string>
+    <!-- description: [Mod service is updating] -->
+    <string name="SERVICE_UPDATING">MOD_SERVICE_UPDATING</string>
+    <!-- description: [Mod service need be updated] -->
+    <string name="SERVICE_VERSION_UPDATE_REQUIRED">MOD_SERVICE_VERSION_UPDATE_REQUIRED</string>
+    <!-- description: [Mod service is disabled] -->
+    <string name="SERVICE_DISABLED">MOD_SERVICE_DISABLED</string>
+    <!-- description: [Mod service is invalid] -->
+    <string name="SERVICE_INVALID">MOD_SERVICE_INVALID</string>
+    <!-- description: [Mod information] -->
+    <string name="about_content">Version: <xliff:g id="version_name">%1$s</xliff:g>\n\nPhone UID: <xliff:g id="phone_uid">%2$s</xliff:g>\n\nMoto Mods UID: <xliff:g id="mod_uid">%3$s</xliff:g>\n\nRequired Moto Mods SDK: <xliff:g id="sdk_version">%4$s</xliff:g></string>
+    <!-- description: [Mod service information] -->
+    <string name="about_service">Moto Mods Platform Version: <xliff:g id="main_version">%1$d</xliff:g>.<xliff:g id="minor_version">%2$d</xliff:g>\nMoto Mods SDK Version: <xliff:g id="main_version">%3$d</xliff:g>.<xliff:g id="minior_version">%4$d</xliff:g>\n<xliff:g id="mod_service_status">%5$s</xliff:g></string>
+    <!-- description: [MDKUtility source code link on Github] -->
+    <string name="host_url"><a href="https://github.com/MotorolaMobilityLLC/mdkutility">Project on Github</a></string>
+
+    <!-- description: [Mod mode is developer mode] -->
+    <string name="developer_mode">Developer mode</string>
+    <!-- description: [Mod mode is example mode] -->
+    <string name="example_mode">Example mode</string>
+
+    <!-- description: [String shows on notification item on status bar] -->
+    <string name="led_light">MDK LED Light</string>
+    <!-- description: [LED status shows on notification item on status bar] -->
+    <string name="led_blinky">MDK LED Blinky</string>
+    <!-- description: [LED status shows on notification item on status bar] -->
+    <string name="led_off">MDK LED OFF</string>
+    <!-- description: [The background service label] -->
+    <string name="raw_service_label">Moto Mods MDK</string>
+    <!-- description: [Action shows on notification item on status bar] -->
+    <string name="change_led_off">TURN OFF LED</string>
+    <!-- description: [Action shows on notification item on status bar] -->
+    <string name="change_led_blinking">TURN ON LED</string>
+    <!-- description: [Action shows on notification item on status bar] -->
+    <string name="exit_service">EXIT SERVICE</string>
+
+    <!-- description: [Firmware update caption] -->
+    <string name="mod_firmware_update">Firmware Update</string>
+    <!-- description: [Firmware update caption] -->
+    <string name="no_firmware_update">Must be in Developer Mode (VID=0x42)</string>
+    <!-- description: [Select firmware file button caption] -->
+    <string name="select_firmware">Select File(s)</string>
+    <!-- description: [Update firmware button caption] -->
+    <string name="firmware_update_perform">Perform Update</string>
+    <!-- description: [Prompt that mod is not ready to update] -->
+    <string name="mod_not_ready">Moto Mods is not ready to flash.</string>
+    <!-- description: [Prompt that mod is not in developer mod to update] -->
+    <string name="mod_not_0x42">Firmware flashing only allowed when Moto Mods VID is 0x42.\n\nPlease use Set Mode to switch to Developer Mode.</string>
+    <!-- description: [Prompt that firmware file is not selected] -->
+    <string name="select_files">Please select firmware files.</string>
+
+    <!-- description: [Prompt text for update firmware result] -->
+    <string name="firmware_update_started">Firmware update started</string>
+    <!-- description: [Prompt text for update firmware result] -->
+    <string name="firmware_update_succeed">Firmware update succeed</string>
+    <!-- description: [Prompt text for update firmware result] -->
+    <string name="firmware_update_failed">Firmware update failed: </string>
+    <!-- description: [Prompt text for update firmware result] -->
+    <string name="firmware_update_failure">Firmware update failed.</string>
+</resources>
