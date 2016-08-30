@@ -72,9 +72,6 @@ public class AboutActivity extends Activity {
         TextView tvContent = (TextView) findViewById(R.id.about_content);
         tvContent.setText(content);
 
-        TextView tvUrl = (TextView) findViewById(R.id.about_url);
-        tvUrl.setMovementMethod(LinkMovementMethod.getInstance());
-
         /**
          * Verifies that the Moto Mod service is installed and enabled on this to determine
          * whether the device supports Moto Mods or not. Status can be one of the following

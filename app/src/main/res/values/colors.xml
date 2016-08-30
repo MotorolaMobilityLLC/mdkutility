@@ -32,4 +32,8 @@
 
     <color name="mod_background">#56C5E1</color>
     <color name="disabled_button">#EEEEEE</color>
+
+    <color name="mod_match">@android:color/holo_green_light</color>
+    <color name="mod_mismatch">@android:color/tertiary_text_light</color>
+    <color name="mod_na">@android:color/tertiary_text_light</color>
 </resources>

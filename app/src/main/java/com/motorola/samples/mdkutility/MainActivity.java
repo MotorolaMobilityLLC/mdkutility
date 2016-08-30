@@ -103,6 +103,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 case Personality.MSG_UPDATE_DONE:
                     /** Mod firmware update finished */
                     int result = msg.arg1;
+
+                    if (result == 1) {
+                        /** User cancelled update */
+                        break;
+                    }
+
+                    if (result == 11) {
+                        /** Update in queue */
+                        break;
+                    }
+
                     if (result == FirmwarePersonality.FIRMWARE_UPDATE_SUCCESS) {
                         Toast.makeText(MainActivity.this,
                                 getString(R.string.firmware_update_succeed), Toast.LENGTH_SHORT).show();
@@ -206,7 +217,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             textView.setOnClickListener(this);
         }
 
-        textView = (TextView) findViewById(R.id.mod_external_buy_mdk);
+        textView = (TextView) findViewById(R.id.mod_external_source_code);
         if (textView != null) {
             textView.setOnClickListener(this);
         }
@@ -332,9 +343,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 /** The Developer Portal link is clicked */
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_DEV_PORTAL)));
                 break;
-            case R.id.mod_external_buy_mdk:
-                /** The Buy Mods link is clicked */
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_MOD_STORE)));
+            case R.id.mod_external_source_code:
+                /** The accessing source code link is clicked */
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_SOURCE_CODE)));
                 break;
             case R.id.firmware_update_select_file:
                 /** The Select Firmware File link is clicked */
@@ -394,10 +405,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         String reason = getString(R.string.firmware_update_failure);
         switch (result) {
             case FirmwarePersonality.FIRMWARE_UPDATE_ILLEGAL_EXCEPTION:
-                reason = getString(R.string.firmware_update_failed);
+                reason = getString(R.string.firmware_update_failed)
+                    + getString(R.string.firmware_illegal_argument_exception);
                 break;
             case FirmwarePersonality.FIRMWARE_UPDATE_SECURITY_EXCEPTION:
-                reason = getString(R.string.firmware_update_failure);
+                reason = getString(R.string.firmware_update_failed)
+                    + getString(R.string.firmware_security_exception);
                 break;
         }
         Toast.makeText(MainActivity.this, reason, Toast.LENGTH_SHORT).show();
@@ -518,8 +531,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
          */
         TextView tvName = (TextView) findViewById(R.id.mod_name);
         if (null != tvName) {
+            tvName.setTextColor(getColor(R.color.mod_mismatch));
             if (null != device) {
                 tvName.setText(device.getProductString());
+
+                if (device.getVendorId() == Constants.VID_MDK
+                        && device.getProductId() == Constants.PID_BLINKY) {
+                    tvName.setTextColor(getColor(R.color.mod_match));
+                }
             } else {
                 tvName.setText(getString(R.string.na));
             }
