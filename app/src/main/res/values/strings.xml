@@ -127,4 +127,8 @@
     <string name="firmware_illegal_argument_exception">Illegal Argument Exception.</string>
     <!-- description: [Update firmware SecurityException] -->
     <string name="firmware_security_exception">Security Exception.</string>
+    <!-- description: [The Dip switch config title prompt] -->
+    <string name="dip_description_title">Dip switch configuration</string>
+    <!-- description: [The Dip switch config description prompt] -->
+    <string name="dip_description">All Dip configurations are \"Don\'t Care\" for this example.</string>
 </resources>
