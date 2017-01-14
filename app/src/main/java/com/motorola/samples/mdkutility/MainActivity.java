@@ -541,8 +541,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onModDevice(ModDevice device) {
         /** Request RAW permission for Blinky Personality Card, to create RAW I/O */
         if (device != null) {
-            if (device.getVendorId() == Constants.VID_MDK
-                    && device.getProductId() == Constants.PID_BLINKY) {
+            if ((device.getVendorId() == Constants.VID_MDK
+                    && device.getProductId() == Constants.PID_BLINKY)
+                    || device.getVendorId() == Constants.VID_DEVELOPER) {
                 checkRawPermission();
             }
         }
@@ -558,8 +559,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
             if (null != device) {
                 tvName.setText(device.getProductString());
 
-                if (device.getVendorId() == Constants.VID_MDK
-                        && device.getProductId() == Constants.PID_BLINKY) {
+                if ((device.getVendorId() == Constants.VID_MDK
+                        && device.getProductId() == Constants.PID_BLINKY)
+                        || device.getVendorId() == Constants.VID_DEVELOPER) {
                     tvName.setTextColor(getColor(R.color.mod_match));
                 }
             } else {
@@ -660,10 +662,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         /** Update LED swith button status */
         Switch led = (Switch) findViewById(R.id.switch_led);
         if (led != null) {
-            if (device == null
-// Remove VID/PID based restraints around attempting to turn on the LED
-//                    || device.getProductId() != Constants.PID_BLINKY
-                    || rawService == null) {
+            if ((device == null) || (rawService == null)) {
                 led.setEnabled(false);
                 led.setChecked(false);
             } else {
@@ -680,8 +679,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (device == null) {
             /** Mod is not available */
             return false;
-        } else if (device.getVendorId() == Constants.VID_DEVELOPER
-                && device.getProductId() == Constants.PID_DEVELOPER) {
+        } else if (device.getVendorId() == Constants.VID_DEVELOPER) {
             // MDK in developer mode
             return true;
         } else {
