@@ -34,8 +34,8 @@
     <string name="mod_external_link">Learn more</string>
     <!-- description: [Developer site menu caption] -->
     <string name="mod_external_dev_portal">Moto Mods™ Developer Portal</string>
-    <!-- description: [Buy Mod menu caption] -->
-    <string name="mod_external_buy_mdk">Buy Moto Mods™ Development Kit</string>
+    <!-- description: [Source code on Github] -->
+    <string name="mod_external_source_code">Source code</string>
     <!-- description: [Privacy Policy menu caption] -->
     <string name="action_privacy_policy">Privacy Policy</string>
 
@@ -79,8 +79,6 @@
     <string name="about_content">Version: <xliff:g id="version_name">%1$s</xliff:g>\n\nPhone UID: <xliff:g id="phone_uid">%2$s</xliff:g>\n\nMoto Mods UID: <xliff:g id="mod_uid">%3$s</xliff:g>\n\nRequired Moto Mods SDK: <xliff:g id="sdk_version">%4$s</xliff:g></string>
     <!-- description: [Mod service information] -->
     <string name="about_service">Moto Mods Platform Version: <xliff:g id="main_version">%1$d</xliff:g>.<xliff:g id="minor_version">%2$d</xliff:g>\nMoto Mods SDK Version: <xliff:g id="main_version">%3$d</xliff:g>.<xliff:g id="minior_version">%4$d</xliff:g>\n<xliff:g id="mod_service_status">%5$s</xliff:g></string>
-    <!-- description: [MDKUtility source code link on Github] -->
-    <string name="host_url"><a href="https://github.com/MotorolaMobilityLLC/mdkutility">Project on Github</a></string>
 
     <!-- description: [Mod mode is developer mode] -->
     <string name="developer_mode">Developer mode</string>
@@ -90,7 +88,7 @@
     <!-- description: [String shows on notification item on status bar] -->
     <string name="led_light">MDK LED Light</string>
     <!-- description: [LED status shows on notification item on status bar] -->
-    <string name="led_blinky">MDK LED Blinky</string>
+    <string name="led_blinky">MDK LED ON</string>
     <!-- description: [LED status shows on notification item on status bar] -->
     <string name="led_off">MDK LED OFF</string>
     <!-- description: [The background service label] -->
@@ -125,4 +123,12 @@
     <string name="firmware_update_failed">Firmware update failed: </string>
     <!-- description: [Prompt text for update firmware result] -->
     <string name="firmware_update_failure">Firmware update failed.</string>
+    <!-- description: [Update firmware IllegalArgumentException] -->
+    <string name="firmware_illegal_argument_exception">Illegal Argument Exception.</string>
+    <!-- description: [Update firmware SecurityException] -->
+    <string name="firmware_security_exception">Security Exception.</string>
+    <!-- description: [The Dip switch config title prompt] -->
+    <string name="dip_description_title">Dip switch configuration</string>
+    <!-- description: [The Dip switch config description prompt] -->
+    <string name="dip_description">All Dip configurations are \"Don\'t Care\" for this example.</string>
 </resources>

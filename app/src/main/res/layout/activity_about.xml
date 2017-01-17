@@ -83,14 +83,6 @@
                 android:textColorLink="@color/colorPrimary" />
 
             <TextView
-                android:id="@+id/about_url"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/widgets_vertical_margin"
-                android:gravity="center"
-                android:text="@string/host_url" />
-
-            <TextView
                 android:id="@+id/license_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

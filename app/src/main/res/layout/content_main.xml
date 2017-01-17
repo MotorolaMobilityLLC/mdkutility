@@ -37,6 +37,8 @@
 
         <include layout="@layout/card_general_info" />
 
+        <include layout="@layout/card_dip_switch_configuration" />
+
         <include layout="@layout/card_firmware_update" />
 
         <include layout="@layout/card_mod_controller" />

@@ -175,18 +175,6 @@ public class FirmwarePersonality extends Personality {
                 }
                 */
 
-                if (getModDevice() != null) {
-                    if (getModDevice().getVendorId() == Constants.VID_DEVELOPER) {
-                        /**
-                         * Currently mod is Developer Mode, abort this intent,
-                         * so ModManager will not receive it to do firmware update, instead
-                         * need handle the update in by self. Refer to
-                         * MainActivity:handler:handleMessage(MSG_REQUEST_FIRMWARE);
-                         */
-                        abortBroadcast();
-                    }
-                }
-
                 notifyListeners(MSG_REQUEST_FIRMWARE);
             } else if (ModManager.ACTION_MOD_ERROR.equals(action)) {
                 /** An error happened to the mod */

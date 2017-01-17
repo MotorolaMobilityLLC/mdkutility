@@ -46,36 +46,59 @@
         android:paddingLeft="@dimen/widgets_horizontal_margin"
         android:paddingRight="@dimen/widgets_horizontal_margin">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/mod_external_link"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold" />
-
-        <View
+        <LinearLayout
+            android:id="@+id/layout_dip_description_title"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/layout_vertical_margin"
-            android:background="?android:dividerHorizontal" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/mod_external_dev_portal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:paddingTop="@dimen/widgets_vertical_margin"
-            android:text="@string/mod_external_dev_portal"
-            android:textColor="@color/colorPrimary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold"
+                android:text="@string/dip_description_title"/>
 
-        <TextView
-            android:id="@+id/mod_external_source_code"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imageview_description_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_expand_more"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_dip_description"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:paddingTop="@dimen/widgets_vertical_margin"
-            android:text="@string/mod_external_source_code"
-            android:textColor="@color/colorPrimary" />
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/layout_vertical_margin"
+                android:background="?android:dividerHorizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:textStyle="italic"
+                android:text="@string/dip_description"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/widgets_vertical_margin"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/dip_all_off"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

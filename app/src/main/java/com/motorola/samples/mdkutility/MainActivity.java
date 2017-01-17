@@ -28,6 +28,7 @@
 
 package com.motorola.samples.mdkutility;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -50,6 +51,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,6 +106,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 case Personality.MSG_UPDATE_DONE:
                     /** Mod firmware update finished */
                     int result = msg.arg1;
+
+                    if (result == 1) {
+                        /** User cancelled update */
+                        break;
+                    }
+
+                    if (result == 11) {
+                        /** Update in queue */
+                        break;
+                    }
+
                     if (result == FirmwarePersonality.FIRMWARE_UPDATE_SUCCESS) {
                         Toast.makeText(MainActivity.this,
                                 getString(R.string.firmware_update_succeed), Toast.LENGTH_SHORT).show();
@@ -184,6 +198,26 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
 
+        LinearLayout dipTitle = (LinearLayout)findViewById(R.id.layout_dip_description_title);
+        dipTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout dipDescription = (LinearLayout)findViewById(R.id.layout_dip_description);
+                ImageView imgExpand = (ImageView)findViewById(R.id.imageview_description_img);
+
+                if (dipDescription.getVisibility() == View.GONE) {
+                    dipDescription.setVisibility(View.VISIBLE);
+                    imgExpand.setImageResource(R.drawable.ic_expand_less);
+                } else {
+                    dipDescription.setVisibility(View.GONE);
+                    imgExpand.setImageResource(R.drawable.ic_expand_more);
+                }
+
+                dipDescription.setPivotY(0);
+                ObjectAnimator.ofFloat(dipDescription, "scaleY", 0f, 1f).setDuration(300).start();
+            }
+        });
+
         Switch switcher = (Switch) findViewById(R.id.switch_led);
         switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -206,7 +240,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             textView.setOnClickListener(this);
         }
 
-        textView = (TextView) findViewById(R.id.mod_external_buy_mdk);
+        textView = (TextView) findViewById(R.id.mod_external_source_code);
         if (textView != null) {
             textView.setOnClickListener(this);
         }
@@ -332,9 +366,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 /** The Developer Portal link is clicked */
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_DEV_PORTAL)));
                 break;
-            case R.id.mod_external_buy_mdk:
-                /** The Buy Mods link is clicked */
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_MOD_STORE)));
+            case R.id.mod_external_source_code:
+                /** The accessing source code link is clicked */
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.URL_SOURCE_CODE)));
                 break;
             case R.id.firmware_update_select_file:
                 /** The Select Firmware File link is clicked */
@@ -394,10 +428,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         String reason = getString(R.string.firmware_update_failure);
         switch (result) {
             case FirmwarePersonality.FIRMWARE_UPDATE_ILLEGAL_EXCEPTION:
-                reason = getString(R.string.firmware_update_failed);
+                reason = getString(R.string.firmware_update_failed)
+                    + getString(R.string.firmware_illegal_argument_exception);
                 break;
             case FirmwarePersonality.FIRMWARE_UPDATE_SECURITY_EXCEPTION:
-                reason = getString(R.string.firmware_update_failure);
+                reason = getString(R.string.firmware_update_failed)
+                    + getString(R.string.firmware_security_exception);
                 break;
         }
         Toast.makeText(MainActivity.this, reason, Toast.LENGTH_SHORT).show();
@@ -505,8 +541,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onModDevice(ModDevice device) {
         /** Request RAW permission for Blinky Personality Card, to create RAW I/O */
         if (device != null) {
-            if (device.getVendorId() == Constants.VID_MDK
-                    && device.getProductId() == Constants.PID_BLINKY) {
+            if ((device.getVendorId() == Constants.VID_MDK
+                    && device.getProductId() == Constants.PID_BLINKY)
+                    || device.getVendorId() == Constants.VID_DEVELOPER) {
                 checkRawPermission();
             }
         }
@@ -518,8 +555,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
          */
         TextView tvName = (TextView) findViewById(R.id.mod_name);
         if (null != tvName) {
+            tvName.setTextColor(getColor(R.color.mod_mismatch));
             if (null != device) {
                 tvName.setText(device.getProductString());
+
+                if ((device.getVendorId() == Constants.VID_MDK
+                        && device.getProductId() == Constants.PID_BLINKY)
+                        || device.getVendorId() == Constants.VID_DEVELOPER) {
+                    tvName.setTextColor(getColor(R.color.mod_match));
+                }
             } else {
                 tvName.setText(getString(R.string.na));
             }
@@ -618,10 +662,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         /** Update LED swith button status */
         Switch led = (Switch) findViewById(R.id.switch_led);
         if (led != null) {
-            if (device == null
-// Remove VID/PID based restraints around attempting to turn on the LED
-//                    || device.getProductId() != Constants.PID_BLINKY
-                    || rawService == null) {
+            if ((device == null) || (rawService == null)) {
                 led.setEnabled(false);
                 led.setChecked(false);
             } else {
@@ -638,8 +679,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (device == null) {
             /** Mod is not available */
             return false;
-        } else if (device.getVendorId() == Constants.VID_DEVELOPER
-                && device.getProductId() == Constants.PID_DEVELOPER) {
+        } else if (device.getVendorId() == Constants.VID_DEVELOPER) {
             // MDK in developer mode
             return true;
         } else {
