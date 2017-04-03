@@ -11,8 +11,8 @@ android {
 
         resConfigs "en"
 
-        versionCode 100004
-        versionName "1.00.004"
+        versionCode 100005
+        versionName "1.00.005"
     }
 
     buildTypes {
