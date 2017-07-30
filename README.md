@@ -1,4 +1,4 @@
-#MDK Utility
+# MDK Utility
 The MDK Utility application provides two separate functionalities.
 
 First, it supports Moto Mods development, providing status information and the ability to flash your firmware on your Reference Moto Mod.  More details can be found at <http://developer.motorola.com/build/examples/mdk-utility>.
